@@ -10,6 +10,7 @@ const fileDb = {
             files.map(async file => {
                 const messageFile = await fs.readFile(`${pathName}/${file}`);
                 return JSON.parse(messageFile.toString());
+
             })
         );
     },
