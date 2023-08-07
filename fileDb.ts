@@ -5,6 +5,13 @@ const pathName = "./messages";
 
 const fileDb = {
     async getItems () {
+        const files = await fs.readdir(pathName);
+        return await Promise.all(
+            files.map(async file => {
+                const messageFile = await fs.readFile(`${pathName}/${file}`);
+                return JSON.parse(messageFile.toString());
+            })
+        );
     },
     async addItem (item: IMessage) {
         const dateTime = new Date().toISOString();
